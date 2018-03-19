@@ -1,43 +1,68 @@
-Relatório
+<!DOCTYPE html>
 
-As ferramentas que não estavam instaladas por padrão no sistema e que serão abordadas nesse relatório são as seguintes:
+<head>
+	<title>Relatório</title>
+		<style type="text/css">
+			.wrapper {
+				max-width: 1200px;
+				margin: 0 auto;
+			}
+		</style>
+</head>
 
-NASM
-KDBG
-Bless Editor
+<body>
+	<div class="wrapper">
+		<h1>Relatório SWB</h1>
+		<h4>Lucas Batista Santos</h4>
 
+		<p>As ferramentas que não estavam instaladas por padrão no sistema e que serão abordadas nesse relatório são as seguintes:</p>
+		<ul>
+			<li>NASM</li>
+			<li>KDBG</li>
+			<li>Bless Editor</li>
+		</ul>
 
-Nasm
+		<h3>Nasm</h3>
 
-O Netwide Assembler (NASM) é um assembler e disassembler para a arquitetura Intel x86. Ele pode ser usado para escrever programas de 16-bit, 32-bit (IA-32) e 64-bit (x86-64). NASM pode produzir diversos formatos binários como COFF, OMF, a.out, Executable and Linkable Format (ELF), Mach-O e binary file (.bin, usado para compilar sistemas operacionais). NASM também possui seu próprio formato binário chamado RDOFF. 
+		<p>O Netwide Assembler (NASM) é um assembler e disassembler para a arquitetura Intel x86. Ele pode ser usado para escrever programas de 16-bit,
+			 32-bit (IA-32) e 64-bit (x86-64). NASM pode produzir diversos formatos binários como COFF, OMF, a.out, Executable and Linkable Format (ELF),
+			 Mach-O e binary file (.bin, usado para compilar sistemas operacionais). NASM também possui seu próprio formato binário chamado RDOFF.</p>
 
-Exemplo de uso: Hello, world!
+			 <ul>Exemplo de uso: Hello, world!</ul>
 
-Para criar e executar um executável do seguinte trecho de código assembly salvo como “hello.asm” que exibe a mensagem “Hello, world!” no linux é necessário executar primeiramente o comando “nasm -f elf hello.asm” que irá gerar um object file (arquivo .o) para o programa. Depois é necessário usar um linker para traduzir o object file em um executável com o comando “ld hello.o -o hello”. Por fim, para executá-lo basta o comando “./hello”.
+			 <p>Para criar e executar um executável a partir do trecho de código assembly abaixo salvo como “hello.asm” que exibe a mensagem “Hello, world!” no
+				 Linux, é necessário executar primeiramente o comando “nasm -f elf hello.asm” que irá gerar um object file (arquivo .o) para o programa.
+				 Depois é necessário usar um linker para traduzir o object file em um executável com o comando “ld hello.o -o hello”. Por fim,
+				 para executá-lo basta o comando “./hello”.</p>
 
-global _start
+			<p><i>global _start<br />
+			<br />
+			section .text<br />
+			_start:<br />
+			  &emsp; mov     eax, 4 ; write<br />
+        &emsp; mov     ebx, 1 ; stdout<br />
+        &emsp; mov     ecx, msg<br />
+        &emsp; mov     edx, msg.len<br />
+        &emsp; int     0x80   ; write(stdout, msg, strlen(msg));<br />
+				<br />
+        &emsp; mov     eax, 1 ; exit<br />
+        &emsp; mov     ebx, 0<br />
+        &emsp; int     0x80   ; exit(0)<br />
+				<br />
+			section .data<br />
+			msg:    db      "Hello, world!", 10<br />
+			.len:   equ     $ - msg</i></p>
 
-section .text
-_start:
-        mov     eax, 4 ; write
-        mov     ebx, 1 ; stdout
-        mov     ecx, msg
-        mov     edx, msg.len
-        int     0x80   ; write(stdout, msg, strlen(msg));
+	<h3>KDBG</h3>
 
-        mov     eax, 1 ; exit
-        mov     ebx, 0
-        int     0x80   ; exit(0)
+	<p>O KDBG é uma interface gráfica para o gdb, o debugger da GNU. Para debugar um programa, escolha um arquivo/carregue um executável no menu.
+	É possível definir breakpoints com o botão direito do mouse ou na janela de breakpoints. Você pode executar o programa com o botão “Run”.
+	O programa vai executar até terminar, atingir um breakpoint/watchpoint, ou receber um sinal. Também é possível executar o programa com
+	argumentos, escolher o diretório de trabalho, e definir variáveis de ambiente. É necessário fazer isto antes de iniciar o programa.</p>
 
-section .data
-msg:    db      "Hello, world!", 10
-.len:   equ     $ - msg
+	<h3>Bless Editor</h3>
 
-KDBG
-
-O KDBG é uma interface gráfica para o gdb, o debugger da GNU.
-Para debugar um programa, escolha um arquivo/carregue um executável no menu. É possível definir breakpoints com o botão direito do mouse ou na janela de breakpoints. Você pode executar o programa com o botão “Run”. O programa vai executar até terminar, atingir um breakpoint/watchpoint, ou receber um sinal. Também é possível executar o programa com argumentos, escolher o diretório de trabalho, e definir variáveis de ambiente. É necessário fazer isto antes de iniciar o programa.
-
-Bless Editor
-
-O Bless Editor é um editor hexadecimal que permite escrever, visualizar e editar arquivos em hexadecimal e ASCII simultaneamente. Ele também exibe a linha do texto atual em decimal, octal e binário. Também é possível visualizar no aplicativo cada byte em signed e unsigned em 8 bit, 16 bit, 32 bit, além de float 32 bit e 64 bit. O programa também permite copy/paste e busca no arquivo em todos os formatos de representação de dados citados anteriormente.
+	<p>O Bless Editor é um editor hexadecimal que permite escrever, visualizar e editar arquivos em hexadecimal e ASCII simultaneamente.
+		Ele também exibe a linha do texto atual em decimal, octal e binário. Também é possível visualizar no aplicativo cada byte em signed e
+		unsigned em 8 bit, 16 bit, 32 bit, além de float 32 bit e 64 bit. O programa também permite copy/paste e busca no arquivo em todos os
+		formatos de representação de dados citados anteriormente.</p>
